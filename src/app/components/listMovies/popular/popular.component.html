@@ -1,0 +1,36 @@
+<div flex>
+  <mat-toolbar-row flex class="main"><h1>Popular Movies</h1></mat-toolbar-row>
+</div>
+
+<mat-grid-list cols="4" gutterSize="5px" rowHeight="470px" *ngIf="popular">
+  <mat-grid-tile *ngFor="let movie of popular" matTooltip="{{movie.overview}}" [matTooltipPosition]="position">
+    <mat-card class="movie">
+
+      <!-- Poster Image -->
+      <div *ngIf="movie.poster_path; then truePoster else falsePoster"></div>
+
+      <ng-template #truePoster>
+        <img mat-card-image routerLink="/movie/{{movie.id}}" src="{{url_image}}{{movie.poster_path}}">
+      </ng-template>
+
+      <ng-template #falsePoster>
+        <img mat-card-image routerLink="/movie/{{movie.id}}" src="assets/no-poster.jpg">
+      </ng-template>
+
+    </mat-card>
+
+    <!-- Movie title -->
+    <mat-grid-tile-footer>{{movie.title}}</mat-grid-tile-footer>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<!-- Paginator -->
+<td-paging-bar class="list" #pagingBarLinks pageLinkCount="5" [firstLast]="false" [initialPage]="page" [pageSize]="1" [total]="totalPages" (change)="changeLinks($event)">
+  <span hide-xs>{{pagingBarLinks.initialPage}} of {{pagingBarLinks.total}}</span>
+</td-paging-bar>
+<div *ngIf="pageEvent">
+  <h5>Page Change Event Properties</h5>
+  <div>List length: {{pageEvent.length}}</div>
+  <div>Page size: {{pageEvent.pageSize}}</div>
+  <div>Page index: {{pageEvent.pageIndex}}</div>
+</div>
