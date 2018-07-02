@@ -1,9 +1,9 @@
 <div flex>
-  <mat-toolbar-row flex class="main"><h1>Popular Movies</h1></mat-toolbar-row>
+  <mat-toolbar-row flex class="main"><h1>Now Playing Movies</h1></mat-toolbar-row>
 </div>
 
-<mat-grid-list cols="4" gutterSize="5px" rowHeight="470px" *ngIf="popular">
-  <mat-grid-tile *ngFor="let movie of popular" matTooltip="{{movie.overview}}" [matTooltipPosition]="position">
+<mat-grid-list cols="4" gutterSize="5px" rowHeight="470px" *ngIf="now_playing">
+  <mat-grid-tile *ngFor="let movie of now_playing" matTooltip="{{movie.overview}}" [matTooltipPosition]="position">
     <mat-card class="movie">
 
       <!-- Poster Image -->

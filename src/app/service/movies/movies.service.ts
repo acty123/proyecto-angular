@@ -25,4 +25,34 @@ export class MoviesService {
     return this.sendRequest(url, args);
   }
 
+  getNowPlayingMovies(page: number): Observable<any> {
+    const url = this.moviesUrl + '/now_playing';
+    const args = '&page=' + page + '&language=en-US';
+    return this.sendRequest(url, args);
+  }
+
+  getUpcomingMovies(page: number): Observable<any> {
+    const url = this.moviesUrl + '/upcoming';
+    const args = '&page=' + page + '&language=en-US';
+    return this.sendRequest(url, args);
+  }
+
+  getTopRatedMovies(page: number): Observable<any> {
+    const url = this.moviesUrl + '/top_rated';
+    const args = '&page=' + page + '&language=en-US';
+    return this.sendRequest(url, args);
+  }
+
+  getMovieDetails(id: number): Observable<any> {
+    const url = this.moviesUrl + '/' + id;
+    const args = '&language=en-US';
+    return this.sendRequest(url, args);
+  }
+
+  getMovieCredits(id: number): Observable<any> {
+    const url = this.moviesUrl + '/' + id + '/credits';
+    const args = '&language=en-US';
+    return this.sendRequest(url, args);
+  }
+
 }

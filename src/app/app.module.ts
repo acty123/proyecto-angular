@@ -18,19 +18,28 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 
 //components
 import { AppComponent } from './app.component';
-
 import { PopularComponent } from './components/listMovies/popular/popular.component';
+import { DetailMovieComponent } from './components/detail-movie/detail-movie.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
 //service
 import { MoviesService } from './service/movies/movies.service';
+import { UpcomingComponent } from './components/listMovies/upcoming/upcoming.component';
+import { TopRatedComponent } from './components/listMovies/top-rated/top-rated.component';
+import { NowPlayingComponent } from './components/listMovies/now-playing/now-playing.component';
+import { CastMovieComponent } from './components/cast-movie/cast-movie.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PopularComponent
+    PopularComponent,
+    DetailMovieComponent,
+    UpcomingComponent,
+    TopRatedComponent,
+    NowPlayingComponent,
+    CastMovieComponent
   ],
   imports: [
     CommonModule,

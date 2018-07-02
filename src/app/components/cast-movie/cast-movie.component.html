@@ -1,0 +1,31 @@
+  
+    <mat-grid-list cols="4" gutterSize="5px" rowHeight="390px">
+      <mat-grid-tile *ngFor="let person of movieCast">
+        <mat-card class="person">
+
+          <!-- Profile image of person -->
+          <div *ngIf="person.profile_path; then trueCast else falseCast"></div>
+
+          <!-- If the image is present in the API is used-->
+          <ng-template #trueCast>
+            <img mat-card-image
+                 routerLink="/person/{{person.id}}" src="{{apiImg}}{{person.profile_path}}"
+                 alt="{{person.name}} profile image">
+          </ng-template>
+
+          <!-- If the image isn't present in the API, then a local image is used-->
+          <ng-template #falseCast>
+            <img mat-card-image
+                 routerLink="/person/{{person.id}}" src="assets/no_avatar.png"
+                 alt="{{person.name}} profile image">
+          </ng-template>
+        </mat-card>
+
+        <!-- Person name and his or her character -->
+        <mat-grid-tile-footer>
+          {{person.name}}<br>
+          like {{person.character | truncate: 20}}
+        </mat-grid-tile-footer>
+
+      </mat-grid-tile>
+    </mat-grid-list>
