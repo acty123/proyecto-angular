@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {TdMediaService} from "@covalent/core";
 
 @Component({
   selector: 'app-root',

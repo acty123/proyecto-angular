@@ -21,32 +21,6 @@ export class DetailMovieComponent implements OnInit, OnDestroy {
   crew = [];
   creditsObservable: Observable<any[]>;
 
-  routes: Object[] = [
-    {
-      title: 'Images',
-      value: '1',
-      icon: 'image',
-    }, {
-      title: 'Videos',
-      value: '2',
-      icon: 'video_library',
-    }, {
-      title: 'Cast',
-      value: '3',
-      icon: 'people',
-    },
-    {
-      title: 'Reviews',
-      value: '4',
-      icon: 'comment',
-    },
-    {
-      title: 'Recommendations',
-      value: '5',
-      icon: 'movie',
-    },
-  ];
-
   currentTab = 1;
   
 

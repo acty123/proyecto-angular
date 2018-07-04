@@ -1,0 +1,32 @@
+<div flex>
+  <mat-toolbar-row flex class="main"><h1>Popular People</h1></mat-toolbar-row>
+</div>
+
+<mat-grid-list cols="5" gutterSize="5px" rowHeight="400px" *ngIf="popular">
+  <mat-grid-tile *ngFor="let person of popular">
+    <mat-card class="person">
+
+      <!-- Profile Image -->
+      <div *ngIf="person.profile_path; then profileTrue else profileFalse"></div>
+
+      <ng-template #profileTrue>
+        <img mat-card-image
+             routerLink="/person/{{person.id}}" src="{{url_image}}w500{{person.profile_path}}">
+      </ng-template>
+
+      <ng-template #profileFalse>
+        <img mat-card-image
+             routerLink="/person/{{person.id}}" src="assets/no_avatar.png">
+      </ng-template>
+
+    </mat-card>
+
+    <!-- Person name -->
+    <mat-grid-tile-footer>{{person.name}}</mat-grid-tile-footer>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<!-- Paginator -->
+<td-paging-bar class="list" #pagingBarLinks pageLinkCount="5" [firstLast]="false" [initialPage]="page" [pageSize]="1" [total]="totalPages" (change)="changeLinks($event)">
+  <span hide-xs>{{pagingBarLinks.initialPage}} of {{pagingBarLinks.total}}</span>
+</td-paging-bar>

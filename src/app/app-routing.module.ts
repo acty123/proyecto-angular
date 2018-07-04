@@ -6,6 +6,9 @@ import { UpcomingComponent } from './components/listMovies/upcoming/upcoming.com
 import { NowPlayingComponent } from './components/listMovies/now-playing/now-playing.component';
 import { TopRatedComponent } from './components/listMovies/top-rated/top-rated.component';
 import { DetailMovieComponent } from './components/detail-movie/detail-movie.component';
+import { PopularPeopleComponent } from './components/listPeople/popular-people/popular-people.component';
+import { DetailPersonComponent } from './components/detail-person/detail-person.component';
+import { SearchComponent } from './components/search/search.component';
 
 
 const routes: Routes=[
@@ -14,7 +17,10 @@ const routes: Routes=[
 	{path: 'upcoming/:page', component: UpcomingComponent},
 	{path: 'now_playing/:page', component: NowPlayingComponent},
 	{path: 'top_rated/:page', component: TopRatedComponent},
+	{path: 'people/:page', component: PopularPeopleComponent},
 	{path: 'movie/:id', component: DetailMovieComponent},
+	{path: 'person/:id', component: DetailPersonComponent},
+	{path: 'search/:media', component: SearchComponent },
 ];
 
 @NgModule({

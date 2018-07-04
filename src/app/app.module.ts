@@ -13,6 +13,8 @@ import { CovalentHttpModule } from '@covalent/http';
 import { CovalentHighlightModule } from '@covalent/highlight';
 import { CovalentMarkdownModule } from '@covalent/markdown';
 import { CovalentDynamicFormsModule } from '@covalent/dynamic-forms';
+import { CovalentLoadingModule } from '@covalent/core';
+import { TdMediaService } from '@covalent/core';
 
 import {FlexLayoutModule} from '@angular/flex-layout';
 
@@ -20,15 +22,22 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { AppComponent } from './app.component';
 import { PopularComponent } from './components/listMovies/popular/popular.component';
 import { DetailMovieComponent } from './components/detail-movie/detail-movie.component';
+import { UpcomingComponent } from './components/listMovies/upcoming/upcoming.component';
+import { TopRatedComponent } from './components/listMovies/top-rated/top-rated.component';
+import { NowPlayingComponent } from './components/listMovies/now-playing/now-playing.component';
+import { CastMovieComponent } from './components/cast-movie/cast-movie.component';
+import { SearchBarComponent } from './components/search/search-bar/search-bar.component';
+import { SearchComponent } from './components/search/search.component';
+import { PopularPeopleComponent } from './components/listPeople/popular-people/popular-people.component';
+import { DetailPersonComponent } from './components/detail-person/detail-person.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
 //service
 import { MoviesService } from './service/movies/movies.service';
-import { UpcomingComponent } from './components/listMovies/upcoming/upcoming.component';
-import { TopRatedComponent } from './components/listMovies/top-rated/top-rated.component';
-import { NowPlayingComponent } from './components/listMovies/now-playing/now-playing.component';
-import { CastMovieComponent } from './components/cast-movie/cast-movie.component';
+import { SearchService } from './service/search/search.service';
+import { PeopleService } from './service/people/people.service';
+
 
 
 @NgModule({
@@ -39,7 +48,11 @@ import { CastMovieComponent } from './components/cast-movie/cast-movie.component
     UpcomingComponent,
     TopRatedComponent,
     NowPlayingComponent,
-    CastMovieComponent
+    CastMovieComponent,
+    SearchBarComponent,
+    PopularPeopleComponent,
+    DetailPersonComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
@@ -66,10 +79,14 @@ import { CastMovieComponent } from './components/cast-movie/cast-movie.component
     CovalentHttpModule.forRoot(),
     CovalentHighlightModule,
     CovalentMarkdownModule,
-    CovalentDynamicFormsModule
+    CovalentDynamicFormsModule,
+    CovalentLoadingModule
   ],
   providers: [
     MoviesService,
+    SearchService,
+    PeopleService,
+    TdMediaService
   ],
   bootstrap: [AppComponent]
 })

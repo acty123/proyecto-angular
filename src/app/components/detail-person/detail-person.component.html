@@ -1,0 +1,130 @@
+<mat-tab-group *ngIf="person">
+
+  <!-- Tab for general details of the person -->
+  <mat-tab label="General">
+    <div class="custom">
+      <div class="single">
+        <section class="images">
+          <div class="poster">
+            <div class="image_content">
+
+              <!-- Profile image -->
+              <div *ngIf="person.profile_path; then profileTrue else profileFalse"></div>
+
+              <ng-template #profileTrue>
+                <img class="image" src="{{apiImgProf}}{{person.profile_path}}">
+              </ng-template>
+
+              <ng-template #profileFalse>
+                <img class="image" src="assets/no_avatar.png">
+              </ng-template>
+
+            </div>
+          </div>
+          <div class="header">
+            <section class="info">
+              <div class="movieTitle">
+                <span>
+                  <h2>{{person.name}}</h2>
+                </span>
+              </div>
+              <!-- First icons -->
+              <ul class="icons">
+
+                <!-- Vote -->
+                <li class="rate" *ngIf="person.popularity">
+                  <div><h3>{{person['popularity'] | number:'1.0-0'}} </h3></div>
+                  <div>
+                    <mat-icon class="thumb_up">thumb_up</mat-icon>
+                  </div>
+                </li>
+              </ul>
+              <div class="biography">
+                <h3>Biography</h3>
+
+                <!-- Conditional when the api don't return the biography -->
+                <div *ngIf="person.biography; then biography else  noBiography"></div>
+
+                <ng-template #noBiography>
+                  <p>No biography</p>
+                </ng-template>
+
+                <ng-template #biography>
+                    <p>{{person.biography}}</p>
+                </ng-template>
+
+                <ul class="icons">
+                  <li class="single_icon" *ngIf="gender != 0">
+                    <div><mat-icon>people</mat-icon></div>
+                    <div class="text">Gender</div>
+                    <div>
+                      : {{gender}}
+                    </div>
+                  </li>
+                  <li class="single_icon" *ngIf="person.place_of_birth">
+                    <div><mat-icon>map</mat-icon></div>
+                    <div class="text">Place of <br> Birth</div>
+                    <div>
+                      : {{person.place_of_birth}}
+                    </div>
+                  </li>
+                </ul>
+                <ul class="icons">
+                  <div *ngIf="person.deathday; then personDead else personAlive"></div>
+
+                  <!-- If the person is dead, the age is calculated when he died -->
+                  <ng-template #personDead>
+                    <li class="single_icon" *ngIf="person.birthday">
+                      <div><mat-icon>event</mat-icon></div>
+                      <div class="text">Birth <br>Date</div>
+                      <div>: </div>
+                      <div class="text"> {{person.birthday }}</div>
+                    </li>
+                    <li class="single_icon" *ngIf="person.deathday">
+                      <div><mat-icon>event</mat-icon></div>
+                      <div class="text">Death <br>Date</div>
+                      <div>: </div>
+                      <div class="text"> {{person.deathday}}
+                        <small>({{age(person.birthday | timeDifference: person.deathday  | slice:0:8)}} years old)</small></div>
+                    </li>
+                  </ng-template>
+
+                  <!-- If the person is alive, his age is showed-->
+                  <ng-template #personAlive>
+                    <li class="single_icon" *ngIf="person.birthday">
+                      <div><mat-icon>event</mat-icon></div>
+                      <div class="text">Birth <br>Date</div>
+                      <div>: </div>
+                      <div class="text"> {{person.birthday }}
+                        <small>({{person.birthday | timeAgo | slice:0:8}} old)</small></div>
+                    </li>
+                  </ng-template>
+
+                  <li class="single_icon" *ngIf="person.homepage">
+                    <div><mat-icon>home</mat-icon></div>
+                    <div class="text">Home <br>Page</div>
+                    <div>
+                      : <a href="{{person.homepage}}"> Official Page</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </section>
+          </div>
+        </section>
+      </div>
+    </div>
+  </mat-tab>
+
+  <!-- Tab for movies and television shows in which the person plays a role -->
+  <mat-tab label="Cast" >
+
+  </mat-tab>
+
+  <!-- Tab for movies and television shows in which the person work in production -->
+
+
+  <!-- Tab for images of the person -->
+
+
+</mat-tab-group>

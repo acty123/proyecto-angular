@@ -5,11 +5,12 @@
   <button mat-button routerLink="/popular/1">Popular</button>
   <button mat-button routerLink="/top_rated/1">Top rated</button>
   <button mat-button routerLink="/upcoming/1">Upcoming</button>
+  <button mat-button routerLink="/people/1">People</button>
 
   <!-- This fills the remaining space of the current row -->
   <span class="remaining-space"> </span>
 
-  <span>search</span>
+  <app-search-bar></app-search-bar>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

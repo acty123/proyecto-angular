@@ -1,0 +1,111 @@
+<section>
+  <div layout="column" layout-gt-sm="row">
+    <div class="bgc-grey-800" [ngClass]="{'categories': _mediaService.query('gt-sm')}">
+      <aside class="pad-top-md pad-bottom-lg pad-left-md pad-right-md" tdMediaToggle="(max-width: 960px)"
+             >
+        <div class="media-type-container" tdMediaToggle="gt-sm" >
+          <ul mat-tab-nav-bar class="pad-left-none"
+              [ngClass]="{'media-type-list-v': _mediaService.query('gt-sm'),
+              'media-type-list-h': _mediaService.query('(max-width: 960px)')}">
+              <a mat-tab-link class="pad-none" [active]="media == 'movie'" (click)="onMoviesClick()"
+                 [ngClass]="{'text-left': _mediaService.query('gt-sm')}">
+                Movies &nbsp;<span class="results-length"><b>{{totalMovies}}</b></span>
+              </a>
+            
+            
+              <a mat-tab-link class="pad-none" [active]="media == 'person'" (click)="onPeopleClick()"
+                 [ngClass]="{'text-left': _mediaService.query('gt-sm')}">
+                People &nbsp;<span class="results-length"><b>{{totalPeople}}</b></span>
+              </a>
+          </ul>
+        </div>
+      </aside>
+    </div>
+    <div flex layout="column" class="pad-top-md pad-bottom-lg pad-left-md pad-right-md"
+         [ngClass]="{'search-results-page': _mediaService.query('gt-sm')}" tdMediaToggle="(max-width: 960px)"
+         >
+      <div layout="row" layout-align="center center" layout-align-gt-xs="start center">
+        <h2 [ngSwitch]="media">Search
+          <mat-icon class="arrow">keyboard_arrow_right</mat-icon>
+        
+          <span *ngSwitchCase="'movie'">Movies Results</span>
+          <span *ngSwitchCase="'person'">People Results</span>
+        </h2>
+      </div>
+      <ng-template tdLoading tdLoadingType="circular" tdLoadingStrategy="replace" tdLoadingColor="accent"
+                   [tdLoadingUntil]="ready">
+        <div flex [ngSwitch]="media">
+          <div flex *ngSwitchCase="'movie'" >
+            <mat-grid-list *ngIf="totalMovies > 0; else noResultsBlock" cols="{{columns}}" gutterSize="5px" rowHeight="470px">
+              <mat-grid-tile *ngFor="let result of results" [colspan]="1" [rowspan]="1">
+                <a [routerLink]="['/movie', result['id']]">
+                  <mat-card class="movie">
+
+			      <!-- Poster Image -->
+			      <div *ngIf="result.poster_path; then truePoster else falsePoster"></div>
+
+			      <ng-template #truePoster>
+			        <img mat-card-image routerLink="/movie/{{result.id}}" src="{{url_image}}{{result.poster_path}}">
+			      </ng-template>
+
+			      <ng-template #falsePoster>
+			        <img mat-card-image routerLink="/movie/{{result.id}}" src="assets/no-poster.jpg">
+			      </ng-template>
+
+			    </mat-card>
+			    <mat-grid-tile-footer>{{result.title}}</mat-grid-tile-footer>
+                </a>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </div>
+          
+          <div flex *ngSwitchCase="'person'">
+            <mat-grid-list *ngIf="totalPeople > 0; else noResultsBlock" cols="{{columnsPeople}}" rowHeight="400px">
+              <mat-grid-tile *ngFor="let result of results" [colspan]="1" [rowspan]="1">
+                <a [routerLink]="['/person', result['id']]">
+                  <mat-card class="person">
+
+			      <!-- Profile Image -->
+			      <div *ngIf="result.profile_path; then profileTrue else profileFalse"></div>
+
+			      <ng-template #profileTrue>
+			        <img mat-card-image
+			             routerLink="/person/{{result.id}}" src="{{url_image}}{{result.profile_path}}">
+			      </ng-template>
+
+			      <ng-template #profileFalse>
+			        <img mat-card-image
+			             routerLink="/person/{{result.id}}" src="assets/no_avatar.png">
+			      </ng-template>
+
+			    </mat-card>
+			    <mat-grid-tile-footer>{{result.name}}</mat-grid-tile-footer>
+                </a>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #elseBlock>
+        <img mat-card-image src="assets/img/no-img.png" class="img-fluid" />
+      </ng-template>
+      <ng-template #noResultsBlock>
+        <div class="push-left-md push-top-sm">
+          <span class="tc-grey-900">There are no results matching your query.</span>
+        </div>
+      </ng-template>
+      <div *ngIf="results.length > 0" layout-xs="column" layout-gt-xs="row" layout-align-xs="center center"
+           layout-align-sm="center center" layout-align-gt-sm="end center" class="push-top-sm">
+        
+        <td-paging-bar #pagingBar [pageSize]="[1]" [pageLinkCount]="5" [initialPage]="currentPage"
+                       [firstLast]="false" [total]="totalResults" (change)="changePage($event)"
+                       class="tc-grey-900">
+            <div>
+	          <span>Currently on page: {{currentPage}} of {{totalPages}}</span>
+	          <span>({{totalResults}} results)</span>
+	        </div>
+        </td-paging-bar>
+      </div>
+    </div>
+  </div>
+</section>
