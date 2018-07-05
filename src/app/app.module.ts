@@ -17,6 +17,7 @@ import { CovalentLoadingModule } from '@covalent/core';
 import { TdMediaService } from '@covalent/core';
 
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 //components
 import { AppComponent } from './app.component';
@@ -31,6 +32,8 @@ import { SearchComponent } from './components/search/search.component';
 import { PopularPeopleComponent } from './components/listPeople/popular-people/popular-people.component';
 import { DetailPersonComponent } from './components/detail-person/detail-person.component';
 import { CorouselComponent } from './components/corousel/corousel.component';
+import { PersonMoviesComponent } from './components/person-movies/person-movies.component';
+
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -54,7 +57,8 @@ import { PeopleService } from './service/people/people.service';
     PopularPeopleComponent,
     DetailPersonComponent,
     SearchComponent,
-    CorouselComponent
+    CorouselComponent,
+    PersonMoviesComponent
   ],
   imports: [
     CommonModule,
@@ -82,7 +86,8 @@ import { PeopleService } from './service/people/people.service';
     CovalentHighlightModule,
     CovalentMarkdownModule,
     CovalentDynamicFormsModule,
-    CovalentLoadingModule
+    CovalentLoadingModule,
+    NgbModule.forRoot(),
   ],
   providers: [
     MoviesService,

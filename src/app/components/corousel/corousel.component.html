@@ -1,3 +1,32 @@
-<p>
-  corousel works!
-</p>
+<section class="tc-white"  tdMediaToggle="gt-xs" >
+  <div layout="row" class="bgc-grey-800">
+    <div flex class="pad" tdMediaToggle="gt-xs">
+      <div flex *tdLoading="'series'; mode:'indeterminate'; type:'circle'; strategy:'replace'; color:'accent'">
+      <div tdMediaToggle="gt-sm" class="text-center">
+        <br>
+        <h1 class="title mat-display-1 tc-teal-A400 push-top-xs push-bottom-sm">Most Popular</h1>
+        <div class="center-block carousel-container">
+          <ngb-carousel>
+            <ng-template ngbSlide *ngFor="let movie of movies">
+              <a [routerLink]="['/movie', movie.id]">
+                <img src="{{apiImg + movie['backdrop_path']}}" class="img-slide img-fluid">
+              </a>
+              <div class="carousel-caption tc-grey-50">
+                <h1 hide-xs>{{movie['original_title']}}</h1>
+                <div class="carousel-caption-date">
+                  <mat-icon class="mat-24 fa-mat tc-grey-50" fontSet="fa" fontIcon="fa-calendar"></mat-icon>
+                  <small layout-align="center center" class="tc-grey-50">
+                    {{movie['release_date']}}
+                  </small>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-carousel>
+        </div>
+      </div>
+      </div>
+    <div class="push-bottom-xl" hide-xs></div>
+    </div>
+  </div>
+  
+</section>

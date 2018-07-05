@@ -1,0 +1,33 @@
+	  <mat-grid-list flex cols="4" gutterSize="5px" rowHeight="470px" *ngIf="movies.length > 0">
+        <mat-grid-tile flex *ngFor="let movie of movies"  matTooltip="{{movie.overview}}"
+                       [matTooltipPosition]="position">
+          <mat-card class="movie">
+
+            <!-- Poster Image -->
+            <div *ngIf="movie.poster_path; then mcasttruePoster else mcastfalsePoster"></div>
+
+            <ng-template #mcasttruePoster>
+              <img mat-card-image
+                   routerLink="/movie/{{movie.id}}" src="{{apiImg}}{{movie.poster_path}}">
+            </ng-template>
+
+            <ng-template #mcastfalsePoster>
+              <img mat-card-image routerLink="/movie/{{movie.id}}" src="assets/no-poster.jpg">
+            </ng-template>
+
+
+          </mat-card>
+
+          <!-- Conditional for character interpreted by the person -->
+          <div *ngIf="movie.character && movie.character.length > 0; then mcharTrue else mcharFalse"></div>
+
+          <ng-template #mcharTrue>
+            <mat-grid-tile-footer>{{movie.title}} <br> like {{movie.character}}</mat-grid-tile-footer>
+          </ng-template>
+
+          <ng-template #mcharFalse>
+            <mat-grid-tile-footer>{{movie.title}}</mat-grid-tile-footer>
+          </ng-template>
+
+        </mat-grid-tile>
+      </mat-grid-list>

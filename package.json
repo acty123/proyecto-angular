@@ -28,6 +28,7 @@
     "@covalent/highlight": "2.0.0-beta.1",
     "@covalent/http": "2.0.0-beta.1",
     "@covalent/markdown": "2.0.0-beta.1",
+    "@ng-bootstrap/ng-bootstrap": "^2.2.0",
     "core-js": "^2.5.4",
     "rxjs": "^6.2.1",
     "zone.js": "^0.8.26"
