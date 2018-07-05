@@ -30,6 +30,7 @@ import { SearchBarComponent } from './components/search/search-bar/search-bar.co
 import { SearchComponent } from './components/search/search.component';
 import { PopularPeopleComponent } from './components/listPeople/popular-people/popular-people.component';
 import { DetailPersonComponent } from './components/detail-person/detail-person.component';
+import { CorouselComponent } from './components/corousel/corousel.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -52,7 +53,8 @@ import { PeopleService } from './service/people/people.service';
     SearchBarComponent,
     PopularPeopleComponent,
     DetailPersonComponent,
-    SearchComponent
+    SearchComponent,
+    CorouselComponent
   ],
   imports: [
     CommonModule,

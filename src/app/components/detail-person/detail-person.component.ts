@@ -17,7 +17,7 @@ export class DetailPersonComponent implements OnInit, OnDestroy {
 
   apiImgOrig = API.apiImg + 'original';
   apiImgBack = API.apiImg + 'w1400_and_h450_bestv2';
-  apiImgProf = API.apiImg + 'w185';
+  apiImgProf = API.apiImg + 'w500';
   person = [];
   gender: string;
   featuredCredit: object;

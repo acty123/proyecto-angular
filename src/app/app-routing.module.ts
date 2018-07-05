@@ -9,10 +9,12 @@ import { DetailMovieComponent } from './components/detail-movie/detail-movie.com
 import { PopularPeopleComponent } from './components/listPeople/popular-people/popular-people.component';
 import { DetailPersonComponent } from './components/detail-person/detail-person.component';
 import { SearchComponent } from './components/search/search.component';
+import { CorouselComponent } from './components/corousel/corousel.component';
 
 
 const routes: Routes=[
-	//{path: '', redirectTo: '/popular/1', pathMatch: 'full'},
+	{path: '', redirectTo: '/home', pathMatch: 'full'},
+	{path: 'home', component: CorouselComponent},
 	{path: 'popular/:page', component: PopularComponent},
 	{path: 'upcoming/:page', component: UpcomingComponent},
 	{path: 'now_playing/:page', component: NowPlayingComponent},
