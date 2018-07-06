@@ -28,9 +28,3 @@
 <td-paging-bar class="list" #pagingBarLinks pageLinkCount="5" [firstLast]="false" [initialPage]="page" [pageSize]="1" [total]="totalPages" (change)="changeLinks($event)">
   <span hide-xs>{{pagingBarLinks.initialPage}} of {{pagingBarLinks.total}}</span>
 </td-paging-bar>
-<div *ngIf="pageEvent">
-  <h5>Page Change Event Properties</h5>
-  <div>List length: {{pageEvent.length}}</div>
-  <div>Page size: {{pageEvent.pageSize}}</div>
-  <div>Page index: {{pageEvent.pageIndex}}</div>
-</div>
